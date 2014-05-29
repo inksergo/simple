@@ -1,15 +1,14 @@
-var WorkoutDay = function(){
-	this.date = new Date();
-	this.exercise = [];
-}
-
-WorkoutDay.prototype = {
-	addExercise : function(name){
+var WorkoutDay = function(name){
+	var self = this;
+	//this.date = new Date();
+	self.nameOfDay = ko.observable(name);
+	this.exercise = ko.observableArray();
+	self.addExercise = function(name){
 		if(typeof name != 'undefined'){
 			this.exercise.push(new Exercise(name))	
 		}
-	},
-	showInfo : function(){
-		return this;
-	}
+	};
+	self.showInfo = function(){
+		return self.exercise;
+	};
 }
