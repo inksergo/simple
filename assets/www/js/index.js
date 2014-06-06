@@ -50,13 +50,8 @@
 		var ExercisePageView = Backbone.View.extend({
 			template: _.template($('#exercise-page').html()),
 			events: {
-				'click button#addNew' : 'addInList'
-			},
-
-			initialize: function(){
-				_.bindAll(this,"render");
-				exerciseList.bind('add', this.addNewView);
-				exerciseList.fetch();
+				'click button#addNew' : 'addInList',
+				'click button#testbutton' : 'testFunc'
 			},
 
 			render: function(){
@@ -65,29 +60,61 @@
 				exerciseList.each(function(elem){
 					var view = new ExerciseView({model: elem});
 					self.$el.find('ul#exercise-list').append(view.render().el);
-					//self.addNewView(elem);
 				});
-				
-				
-				//return this;
+				console.log('render exercise');
+				return this;
+			},
+
+			initialize: function(){
+				_.bindAll(this, 'render');
+				exerciseList.bind('add', this.addNewView);
+				exerciseList.fetch();
 			},
 
 			addInList: function(){
+				
 				exerciseList.create({
 					exerciseName: $('#exercise-name').val()
-				})
+				});
+				$('#exercise-name').val('');
 			},
-
+			//trable-----------------
 			addNewView: function(mod){
-				var view = new ExerciseView({model: mod});
+				console.log(this.$el);
+				var view = new ExerciseView({model: mod});		
 				$('ul#exercise-list').append(view.render().el);
 			},
+			//--------------------
+
+			testFunc: function(){
+				//this.tt++;
+				console.log(this.tt);
+			}
 
 		});
 
 
 
+		var CreateProgramView = Backbone.View.extend({
+			template: _.template($('#create-program-page').html()),
 
+			events: {
+				'click button#addNewDay' : 'addInList',
+				'dblclick button.ww' : 'testFunc'
+			},
+
+			initialize: function(){
+
+			},
+
+			render: function(){
+				this.$el.html(this.template());
+				return this;
+			},
+			addInList: function(){
+
+			}
+		});
 
 
 
@@ -121,11 +148,13 @@
 			},
 			createProgramTraning: function(){
 				console.log('createProgramTraning');
+				this.changePage(new CreateProgramView());
 			},
 
 
 			changePage:function (page) {
 		        $(page.el).attr('data-role', 'page');
+		        $(page.el).attr('data-theme', 'a');
 		        page.render();
 		        $('body').append(page.el);
 		        var transition = $.mobile.defaultPageTransition;
