@@ -1,65 +1,81 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="style/style.css" />
-        <link rel="stylesheet" type="text/css" href="style/jquery.mobile-1.4.2.css" />
-        <title>my test app</title>
-    </head>
-    <body>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <link rel="stylesheet" type="text/css" href="css/jqMobile.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 
+<!--
+templates***************************************
+-->
 
-    <div data-bind="if: testVariable">
-    <span>test variable = </span>
-    <span data-bind="text: testVariable"></span>
+<script type="text/template" id="main-page">
+    <div data-role="header">
+        <h1>Main menu</h1>
     </div>
-
-
-    <ul class="mainMenu" data-bind="if: mainMenuVisible">
-        <li><button data-bind="click: showCurrentProgramMenu">Тренинг</button></li>
-        <li><button data-bind="">Упражнения</button></li>
-        <li><button data-bind="click: showCreateProgramMenu">Составить Программу</button></li>
-    </ul>
-
-
-    <div class="createProgram" data-bind="if: createProgramVisible">
-        <table >
-            <tbody data-bind="foreach: currentProgram">
-                <tr>
-                    <td data-bind="text: $index"></td>
-                    <td><input data-bind="value: nameOfDay" /></td>
-                </tr>
-            </tbody>
-        </table>
-        <p>
-            <input data-bind="value: workOutDay"/>
-            <button data-bind="click: addWorkOutDay">Add</button>
-        </p>
-        <button data-bind="click: backToMainMenu">Back</button>
+    <div data-role="content" class="main-menu">
+        <ul data-role="listview"  data-inset="true" id="fortest" >
+            <li><a href="#workOut">workOut</a></li>
+            <li><a href="#exercise">exercise</a></li>
+            <li><a href="#createProgramTraning">createProgramTraning</a></li>
+        </ul>
+        <button id="testbutton">test button</button>
     </div>
+</script>
 
-    <div data-bind="if: currentProgramVisible">
-        <table>
-            <tbody data-bind="foreach: currentProgram">
-                <tr data-bind="click: $root.testClick">
-                    <td data-bind="text: $index"></td>
-                    <td data-bind="text: nameOfDay"></td>
-                </tr>
-            </tbody>
-        </table>
-        <button data-bind="click: backToMainMenu">Back</button>
+
+
+<script type="text/template" id="exercise-page">
+    <div data-role="header">
+        <a href="#" data-icon="back" class="back ui-btn-left">Back</a>
+        <h1>Exercise list</h1>
     </div>
+    <div data-role="content">
+        <ul data-role="listview"  data-inset="true" id="exercise-list">
+        </ul>
+        <input type="text" id="exercise-name" />
+        <button id="addNew">Add new exercise</button>
+        <button id="testbutton">test button</button>
+    </div>
+</script>
 
-        <!--<script type="text/javascript" src="cordova.js"></script>-->
-        <script type="text/javascript" src="js/knockout-3.1.0.js"></script>
-        <!--<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>-->
-        <script type="text/javascript" src="js/set.js"></script>
-        <script type="text/javascript" src="js/exercise.js"></script>
-        <script type="text/javascript" src="js/workoutDay.js"></script>
-        <script type="text/javascript" src="js/main.js"></script>
 
 
-    </body>
+<script type="text/template" id="create-program-page">
+    <div data-role="header">
+        <a href="#" data-icon="back" class="back ui-btn-left">Back</a>
+        <h1>Create my program</h1>
+    </div>
+    <div data-role="content">
+        <div data-role="listview"  data-inset="true" id="program-list">
+        <button class="ww"></button>
+        </div>
+        <button data-theme="b" data-icon ="plus" data-role="button" data-inline="true" id="addNewDay">Add day</button>
+        <button id="testbutton">test button</button>
+    </div>
+</script>
+
+
+<script type="text/template" id="exercise-list-template">
+<a href="#"><%=exerciseName%> <span> <%=sets%></span></a>
+</script>
+
+
+
+<!--*********************************************-->
+
+   <!-- <script type="text/javascript" src="js/libs/cordova.js"></script>-->
+    <script type="text/javascript" src="js/libs/jquery.js"></script>
+    <script type="text/javascript" src="js/jqm_conf.js"></script>
+    <script type="text/javascript" src="js/libs/jqMobile.js"></script>
+    <script type="text/javascript" src="js/libs/underscore.js"></script>
+    <script type="text/javascript" src="js/libs/backbone.js"></script>
+    <script type="text/javascript" src="js/libs/backbone.localStorage-min.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+</head>
+<body>
+</body>
 </html>

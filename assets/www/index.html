@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-    <link rel="stylesheet" type="text/css" href="css/jqMobile.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
 
 <!--
@@ -60,22 +60,47 @@ templates***************************************
 
 
 <script type="text/template" id="exercise-list-template">
-<a href="#"><%=exerciseName%></a>
+<a class="exercise" href="#"><%=exerciseName%></a>
 </script>
+
 
 
 
 <!--*********************************************-->
 
-   <!-- <script type="text/javascript" src="js/libs/cordova.js"></script>-->
+    <script type="text/javascript" src="js/libs/cordova.js"></script>
     <script type="text/javascript" src="js/libs/jquery.js"></script>
     <script type="text/javascript" src="js/jqm_conf.js"></script>
-    <script type="text/javascript" src="js/libs/jqMobile.js"></script>
     <script type="text/javascript" src="js/libs/underscore.js"></script>
     <script type="text/javascript" src="js/libs/backbone.js"></script>
     <script type="text/javascript" src="js/libs/backbone.localStorage-min.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
+
+    <script type="text/javascript" src="js/models/exercise.js"></script>
+    <script type="text/javascript" src="js/models/program.js"></script>
+    <script type="text/javascript" src="js/collections/exercise.js"></script>
+    <script type="text/javascript" src="js/collections/program.js"></script>
+    <script type="text/javascript" src="js/views/program_page.js"></script>
+    <script type="text/javascript" src="js/views/exercise_page.js"></script>
+    <script type="text/javascript" src="js/views/main_page.js"></script>
+
+    <script type="text/javascript" src="js/app.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            window.app = new App();
+        });
+    </script>
+
 </head>
 <body>
+    <div id='main-page-lnk'>
+        <div class='menu'>
+            <div id='workout-lnk' class='btn btn-primary'>workout</div>
+            <div id='exercise-lnk' class='btn btn-primary'>exercise</div>
+            <div id='create-program-lnk' class='btn btn-primary'>create-program</div>
+        </div>
+        <div style="clear: both;"></div>
+        <div id='content-lnk'></div>
+    </div>
 </body>
 </html>
